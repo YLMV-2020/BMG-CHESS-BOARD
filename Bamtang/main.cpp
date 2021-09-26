@@ -85,7 +85,7 @@ void drawChessBoard(const std::string& initPosition)
             j = 0;
             continue;
         }
-        else if (isdigit(piece))
+        else if (piece >= '0' && piece <= '9')
             for (; j < (piece - '0'); j++)
                 board[i][j] = 0;
         else
