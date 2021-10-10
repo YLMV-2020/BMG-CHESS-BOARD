@@ -128,9 +128,9 @@ int main()
 
         window.clear();
         window.draw(sBoard);
-        for (int i = 0; i < 32; i++) sprite[i].move(offset);
-        for (int i = 0; i < 32; i++) window.draw(sprite[i]); window.draw(sprite[0]);
-        for (int i = 0; i < 32; i++) sprite[i].move(-offset);
+        for (int i = 0; i < n; i++) sprite[i].move(offset);
+        for (int i = 0; i < n; i++) window.draw(sprite[i]); window.draw(sprite[0]);
+        for (int i = 0; i < n; i++) sprite[i].move(-offset);
         window.display();
     }
 
