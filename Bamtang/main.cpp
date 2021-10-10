@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace sf;
 
 int size = 56;
 Vector2f offset(28, 28);
 
-Sprite f[32]; //figures
+Sprite sprite[32]; //figures
 
 /*
 1-tower 2-horse
@@ -13,7 +14,7 @@ Sprite f[32]; //figures
 5-king 6-pawn
 */
 
-int board[8][8]{ 0 };
+int board[8][8];
 
 int checkPiece(char piece)
 {
@@ -52,7 +53,7 @@ int checkPiece(char piece)
     return piece;
 }
 
-void loadPosition()
+void generatorBoard()
 {
     int k = 0;
     for (int i = 0; i < 8; i++)
@@ -62,14 +63,16 @@ void loadPosition()
             if (!n) continue;
             int x = abs(n) - 1;
             int y = n > 0 ? 1 : 0;
-            f[k].setTextureRect(IntRect(size * x, size * y, size, size));
-            f[k].setPosition(size * j, size * i);
+            sprite[k].setTextureRect(IntRect(size * x, size * y, size, size));
+            sprite[k].setPosition(size * j, size * i);
             k++;
         }
 }
 
-void drawChessBoard(const std::string& initPosition)
+int drawChessBoard(const std::string& initPosition)
 {
+    int count = 0;
+
     std::string::const_iterator itBegin = initPosition.begin();
     std::string::const_iterator itEnd = initPosition.end();
 
@@ -85,31 +88,34 @@ void drawChessBoard(const std::string& initPosition)
             j = 0;
             continue;
         }
-        else if (piece >= '0' && piece <= '9')
-            for (; j < (piece - '0'); j++)
-                board[i][j] = 0;
+        else if (piece >= '1' && piece <= '8')
+            j += (piece - '0');
         else
+        {
+            count++;
             board[i][j++] = piece;
+        }
     }
-
-    loadPosition();
+    return count;
 }
 
 int main()
 {
     RenderWindow window(VideoMode(504, 504), "CHESS BOARD");
 
+    /*------------------------------------------------------------------------*/
+    std::string initPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+    int n = drawChessBoard(initPosition);
+    /*------------------------------------------------------------------------*/
+
     Texture t1, t2;
     t1.loadFromFile("images/figures.png");
     t2.loadFromFile("images/board.png");
 
-    for (int i = 0; i < 32; i++) f[i].setTexture(t1);
     Sprite sBoard(t2);
+    for (int i = 0; i < n; i++) sprite[i].setTexture(t1);
 
-    /*------------------------------------------------------------------------*/
-    std::string initPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
-    drawChessBoard(initPosition);
-    /*------------------------------------------------------------------------*/
+    generatorBoard();
 
     while (window.isOpen())
     {
@@ -119,13 +125,12 @@ int main()
             if (e.type == Event::Closed)
                 window.close();
         }
-       
-        ////// draw  ///////
+
         window.clear();
         window.draw(sBoard);
-        for (int i = 0; i < 32; i++) f[i].move(offset);
-        for (int i = 0; i < 32; i++) window.draw(f[i]); window.draw(f[0]);
-        for (int i = 0; i < 32; i++) f[i].move(-offset);
+        for (int i = 0; i < 32; i++) sprite[i].move(offset);
+        for (int i = 0; i < 32; i++) window.draw(sprite[i]); window.draw(sprite[0]);
+        for (int i = 0; i < 32; i++) sprite[i].move(-offset);
         window.display();
     }
 
