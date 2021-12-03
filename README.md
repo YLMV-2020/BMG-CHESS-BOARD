@@ -33,12 +33,3 @@ Así por ejemplo la posición inicial de ajedrez se representa por:
 ```
 Implementar la función: **drawChessBoard( initPosition )**
 
-## Construido con 🛠️
-
-* C++ - Lenguaje de programación
-* [Visual Studio 2019](https://visualstudio.microsoft.com/es/downloads/) - IDE
-* [SFML](https://www.sfml-dev.org) - Librería gráfica
-
-## Autor ✒️
-
-* **Yordy Leonidas** - *Implementación* - [YLMV-2020](https://github.com/YLMV-2020)
