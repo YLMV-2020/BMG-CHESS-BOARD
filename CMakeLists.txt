@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(Bamtang)
+project(Chess)
 
 option(SFML_BUILD_DOC OFF)
 option(SFML_BUILD_EXAMPLES OFF)
@@ -13,9 +13,6 @@ file(GLOB PROJECT_CONFIGS CMakeLists.txt
                          .gitattributes
                          .gitignore
                          .gitmodules)
-
-add_definitions(-DSFML_INCLUDE_NONE
--DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 
 add_executable(${PROJECT_NAME} main.cpp)
 

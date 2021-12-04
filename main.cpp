@@ -108,8 +108,8 @@ int main()
     /*------------------------------------------------------------------------*/
 
     Texture t1, t2;
-    t1.loadFromFile("Bamtang/images/figures.png");
-    t2.loadFromFile("Bamtang/images/board.png");
+    t1.loadFromFile("Chess/images/figures.png");
+    t2.loadFromFile("Chess/images/board.png");
 
     Sprite sBoard(t2);
     for (int i = 0; i < n; i++) sprite[i].setTexture(t1);
