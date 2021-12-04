@@ -1,6 +1,6 @@
 # CHESS BOARD
 
- <img src="https://github.com/YLMV-2020/BMG-CHESS-BOARD/blob/main/screenshot/game.png" width="300px">
+ <img src="https://github.com/YLMV-2020/BMG-CHESS-BOARD/blob/cmake/screenshot/game.png" width="300px">
 
 ## Problema 🚀
 
